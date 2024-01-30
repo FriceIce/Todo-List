@@ -7,6 +7,7 @@
 }
 
 body{
+  background-color: lightgreen;
   width: 100vw;
   min-height: 100vh;
   height: auto;
@@ -18,8 +19,8 @@ body{
 .layout{
   background-color: lightblue;
   width: 100%;
-  max-width: 520px;
-  min-height: 600px;
+  max-width: 720px;
+  min-height: 800px;
   height: auto;
   border-radius: 10px;
   /* border: 2px solid black; */
@@ -42,11 +43,12 @@ body{
 }
 
 form{
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   /* border-bottom: 2px solid black; */
-  padding: 0px 15px 25px 25px;
+  padding: 0px 15px 15px 25px;
 }
 
 .todo-input{
@@ -84,6 +86,48 @@ input::placeholder{
 
 .submit-btn:hover{
   transform: scale(1.05);
+}
+
+.categories{
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  /* justify-content: space-around; */
+  width: 90%;
+  padding-left: 30px;
+}
+
+.options{
+  font-family: 'Honk', Arial, system-ui;
+  font-size: 2rem;
+  font-weight: 700;
+  transition: all 200ms;
+  cursor: pointer;
+}
+
+.active-option{
+  border-bottom: 4px solid rgb(0, 0, 0);
+}
+
+.remove-btn{
+  background-color: transparent;
+  color: white;
+  font-family: 'Honk', Arial, system-ui;
+  font-size: 2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  max-width: 150px;
+  flex: 1 0;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.remove-btn:hover{
+  background-color: rgb(255, 53, 53);
 }
 
 /* ----------------------------------------------lower-cont---------------------------------------------- */

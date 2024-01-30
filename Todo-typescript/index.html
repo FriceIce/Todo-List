@@ -16,19 +16,22 @@
   </head>
   <body>
     <main class="layout">
-      <div class="upper-container">
+      <Section class="upper-container">
         <h2>Todo-List <img class="todo-icon" src="svg-icons/coffee-svgrepo-com.svg" alt="todo icon"></h2>
         <form>
           <input class="todo-input" type="text" placeholder="Add your Task">
           <button class="submit-btn">ADD</button>
         </form>
+        <div class="categories">
+          <p class="options active-option">All</p>
+          <p class="options">Pending</p>
+          <p class="options">Completed</p>
+          <button class="remove-btn">Clear All</button>
+        </div>
+        <hr>
         <ul>
-          <li>Gymma på måndag</li>
-          <li>Plugga 3h</li>
-          <li>Gråta i 4h</li>
-          <li>Spela League of Legends i 10h</li>
         </ul>
-      </div>
+      </Section>
     </main>
   </body>
 </html>
