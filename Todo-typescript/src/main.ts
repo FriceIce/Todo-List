@@ -31,7 +31,7 @@ if(formEl){
   formEl.addEventListener('submit', (el: SubmitEvent) => {
     el.preventDefault();
     const inputEl: HTMLInputElement | null = document.querySelector('form input');
-    if(!inputEl) return console.log('Check if fomr input Element is null or if the input.value is undefined.'); 
+    if(!inputEl) return console.log('Check if form input Element is null or if the input.value is undefined.'); 
     
     if(!inputEl.value){
       inputEl.placeholder = 'Your input is empty..' 
@@ -58,6 +58,7 @@ if(categories)
     if(target == removeBtn){
       localStorage.removeItem('content'); 
       if(ulEl) ulEl.innerHTML = ''; 
+      while(content.length > 0) content.pop();
       return
     }
 
