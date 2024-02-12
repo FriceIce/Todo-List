@@ -14,7 +14,7 @@ export default function filterSystem(target: EventTarget | null, option: HTMLPar
         if(!task.classList.contains('task-done')) return task.style.display = 'none';
       })
     } else {
-      tasks.forEach(task => task.style.display = '')
+      tasks.forEach(task => task.style.display = '');
     }
   } else {
     option.classList.remove('active-option'); 

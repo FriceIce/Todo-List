@@ -1,73 +1,83 @@
+import { v4 as uuidv4 } from 'uuid';
 import filterSystem from "./modules/filter-Task";
 import{ displayNewTask, renderHTML } from "./modules/render-tasks";
 import { content, saveToLocalStorage } from "./modules/save-text-content";
 
-const ulEl: HTMLUListElement | null = document.querySelector('ul');
-if(ulEl){
-  ulEl.addEventListener('click', (el: MouseEvent) => {
-    const target: EventTarget | null = el.target; 
-    const taskEl: NodeListOf<HTMLLIElement> = document.querySelectorAll('ul li'); 
-    
-    
-    if(target){
-      taskEl.forEach((element: HTMLLIElement, index: number) => {
-        if(target === element){
-          element.classList.toggle('task-done');
-        } 
-      })
-    
+const ulEl = document.querySelector('ul') as HTMLUListElement;
+ulEl.addEventListener('click', (el: MouseEvent) => {
+  const target= el.target; 
+  const taskEl: NodeListOf<HTMLLIElement> = document.querySelectorAll('ul li'); 
+  
+  if(target){
+    taskEl.forEach((element: HTMLLIElement) => {
+      if(target === element){
+        element.classList.toggle('task-done');
+      } 
+    })
     console.log(content)
   }
 });
-} else {
-  console.error('Element är null, förmodligen fel klassnamn.')
-}
-
 
 // ---------------------ADD TASKS----------------------
-const formEl: HTMLFormElement | null = document.querySelector('form');
-
-if(formEl){
-  formEl.addEventListener('submit', (el: SubmitEvent) => {
-    el.preventDefault();
-    const inputEl: HTMLInputElement | null = document.querySelector('form input');
-    if(!inputEl) return console.log('Check if form input Element is null or if the input.value is undefined.'); 
-    
-    if(!inputEl.value){
-      inputEl.placeholder = 'Your input is empty..' 
-      setTimeout(() => {
-        inputEl.placeholder = 'Add your Task'
-      }, 5000);
-    }
-
-    if(ulEl) displayNewTask(inputEl.value, ulEl);
+const formEl = document.querySelector('form') as HTMLFormElement;
+formEl.addEventListener('submit', (el: SubmitEvent) => {
+  el.preventDefault();
+  const inputEl = document.querySelector('form input') as HTMLInputElement;
+  
+  if(inputEl.value){
+    const id: string = uuidv4();
+    displayNewTask(inputEl.value, ulEl, id);
     inputEl.value = '';
-  })
-
-}
+    return; 
+  }
+  
+  inputEl.placeholder = 'Your input is empty..';
+  setTimeout(() => {
+    inputEl.placeholder = 'Add your Task';    
+  }, 5000);
+});
 
 // --------------------FILTER TASKS---------------------
-const categories: HTMLDivElement | null = document.querySelector('.categories');
-if(categories)
-  categories.addEventListener('click', (el: MouseEvent) => {
-    const target: EventTarget | null = el.target;
-    const removeBtn: HTMLButtonElement | null = document.querySelector('.remove-btn');
-    const filterOptions: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('.options')
-    const tasks: NodeListOf<HTMLLIElement> = document.querySelectorAll('ul li'); 
-
-    if(target == removeBtn){
-      localStorage.removeItem('content'); 
-      if(ulEl) ulEl.innerHTML = ''; 
-      while(content.length > 0) content.pop();
-      return
-    }
-
-    filterOptions.forEach((option) => {
-      filterSystem(target, option, tasks); 
-    });
-
-
+const categories = document.querySelector('.categories') as HTMLDivElement;
+categories.addEventListener('click', (el: MouseEvent) => {
+  const target = el.target;
+  const removeBtn = document.querySelector('.remove-btn') as HTMLButtonElement;
+  const filterOptions: NodeListOf<HTMLParagraphElement> = document.querySelectorAll('.options')
+  const tasks: NodeListOf<HTMLLIElement> = document.querySelectorAll('ul li'); 
+  
+  if(target == removeBtn){
+    while(content.length > 0) content.pop();
+    localStorage.removeItem('content'); 
+    ulEl.innerHTML = ''; 
+    return;
+  }
+  
+  filterOptions.forEach((option) => {
+    filterSystem(target, option, tasks); 
   });
-// ----------------Rendering HTML-----------------------
-if(ulEl) renderHTML(ulEl); 
+  
+});
+
+
+// --------------------REMOVE TASK---------------------------
+const ULForTask = document.querySelector('ul') as HTMLUListElement;
+ULForTask.addEventListener('click', (el)=> {
+  const target = el.target as HTMLImageElement; 
+  const liElement = target.closest('li') as HTMLLIElement; 
+  const id = liElement.dataset.id; 
+  const removeBtn = document.querySelector('.remove-specific-task-' + id);
+
+  if(target === removeBtn){
+    content.forEach((textContent,index) => {
+      if(textContent.id === id){
+        content.splice(index, 1); 
+        liElement.remove(); 
+        saveToLocalStorage();
+      }
+    })
+  }
+});
+
+// ----------------Render Tasks-----------------------
+renderHTML(ulEl); 
 // --------------------------------------------------
