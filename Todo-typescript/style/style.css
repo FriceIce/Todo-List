@@ -1,3 +1,5 @@
+@import url('hamburger-menu.css');
+
 * {
   padding: 0;
   margin: 0;
@@ -8,12 +10,13 @@
 
 body{
   background-color: lightgreen;
-  width: 100vw;
+  min-width: 100vw;
+  width: auto;
   min-height: 100vh;
   height: auto;
   display: grid;
   place-items: center;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .layout{
@@ -25,6 +28,7 @@ body{
   border-radius: 10px;
   /* border: 2px solid black; */
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.468);
+  position: relative;
 }
 
 .upper-container h2{
@@ -46,6 +50,7 @@ form{
   position: relative;
   display: flex;
   align-items: center;
+  justify-items: center;
   width: 100%;
   /* border-bottom: 2px solid black; */
   padding: 0px 15px 15px 25px;
@@ -58,11 +63,12 @@ form{
   color: black;
   height: 45px;
   width: 100%;
-  max-width: 380px;
+  max-width: 480px;
   border: none;
   outline: none;
-  border-radius: 19px;
-  padding-left: 10px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding-inline: 15px 35px;
   box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.281);
 }
 
@@ -77,8 +83,10 @@ input::placeholder{
   height: 45px;
   min-width: 85px;
   border: none;
-  margin-left: -30px;
+  margin-left: -32px;
   border-radius: 25px;
+  /* border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px; */
   cursor: pointer;
   transition: transform 200ms;
   box-shadow: inset -2px 2px 5px rgba(0, 0, 0, 0.244);
@@ -86,48 +94,6 @@ input::placeholder{
 
 .submit-btn:hover{
   transform: scale(1.05);
-}
-
-.categories{
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  /* justify-content: space-around; */
-  width: 90%;
-  padding-left: 30px;
-}
-
-.options{
-  font-family: 'Honk', Arial, system-ui;
-  font-size: 2rem;
-  font-weight: 700;
-  transition: all 200ms;
-  cursor: pointer;
-}
-
-.active-option{
-  border-bottom: 4px solid rgb(0, 0, 0);
-}
-
-.remove-btn{
-  background-color: transparent;
-  color: white;
-  font-family: 'Honk', Arial, system-ui;
-  font-size: 2rem;
-  font-weight: 600;
-  white-space: nowrap;
-  padding: 4px 15px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-  max-width: 150px;
-  flex: 1 0;
-  cursor: pointer;
-  transition: background-color 150ms;
-}
-
-.remove-btn:hover{
-  background-color: rgb(255, 53, 53);
 }
 
 /* ----------------------------------------------lower-cont---------------------------------------------- */
@@ -142,12 +108,14 @@ ul li {
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
   color: black;
   font-weight: 600;
   font-size: 1.1rem;
-  width: 100%;
   padding: 10px 0px 10px 50px;
   position: relative;
+  flex: none;
 }
 
 ul li::before{
@@ -166,10 +134,14 @@ ul li::before{
   left: 10px;
 }
 
-.remove-edit-container{
-  position: absolute;
-  right: 0;
+.text-content{
+  border-radius: 5px;
+  padding: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.remove-edit-container{
   display: flex;
   gap: 1rem;
 }
@@ -179,6 +151,15 @@ ul li::before{
   height: 22px;
 
   cursor: pointer;
+}
+
+.edit-btn::before{
+  content: "";
+  display: block;
+  width: 40px;
+  height: 40px;
+  background: black;
+  z-index: 2;
 }
 
 .remove-edit-container img:first-child:hover{

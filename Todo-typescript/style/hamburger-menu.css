@@ -1,0 +1,101 @@
+:root{
+  --bar-width: 30px;
+  --bar-height: 5px;
+  --hamburgar-gap: 4px;
+  --bg-color: rgb(1, 1, 1);
+  --margin: 12px; 
+  --menu-height: calc(var(--bar-height) * 3 + var(--hamburgar-gap) * 2);
+  --animation-timing: 250ms ease-in;
+}
+
+.hamburgare-menu{
+  --x-width: calc(var(--menu-height) * 1.41421356237);
+  
+  display: none;
+  flex-direction: column;
+  gap: var(--hamburgar-gap);
+  width: max-content;
+  z-index: 2;
+  
+  position: absolute;
+  top: var(--margin);
+  right: var(--margin);
+}
+
+.hamburgare-menu::before,
+.hamburgare-menu::after, 
+.hamburgare-menu input{
+  content: "";
+  width: var(--bar-width);
+  height: var(--bar-height);
+  background-color: var(--bg-color);
+  transform-origin: left center;
+  border-radius: 1000px;
+  cursor: pointer;
+  transition: all var(--animation-timing), opacity 100ms;
+}
+
+.hamburgare-menu input{
+  appearance: none;
+  outline: none;
+  /* pointer-events: none; */
+}
+
+.hamburgare-menu:has(input:checked)::before{
+  rotate: 45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--bar-height) / -1.1);
+}
+
+.hamburgare-menu:has(input:checked)::after{
+  rotate: -45deg;
+  width: var(--x-width);
+  translate: 0 calc(var(--bar-height)) / 1.5;
+}
+
+.hamburgare-menu input:checked{
+  opacity: 0;
+}
+
+/* ----------------------Categories---------------------- */
+
+.categories{
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  width: 90%;
+  padding-left: 30px;
+}
+
+.options{
+  font-family: 'Honk', Arial, system-ui;
+  font-size: 2rem;
+  font-weight: 700;
+  transition: all 200ms;
+  cursor: pointer;
+}
+
+.active-option{
+  border-bottom: 4px solid rgb(0, 0, 0);
+}
+
+.remove-btn{
+  background-color: transparent;
+  color: white;
+  font-family: 'Honk', Arial, system-ui;
+  font-size: 2rem;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 4px 15px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  max-width: 150px;
+  flex: 1 0;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.remove-btn:hover{
+  background-color: rgb(255, 53, 53);
+}
