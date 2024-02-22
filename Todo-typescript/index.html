@@ -11,12 +11,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/media-queries.css">
     <script type="module" src="src/main.ts"></script>
     <title>Todo</title>
   </head>
   <body>
     <main class="layout">
       <Section class="upper-container">
+        <label for="menu" class="hamburgare-menu">
+          <input type="checkbox" for="menu">
+        </label>
+
         <h2>Todo-List <img class="todo-icon" src="svg-icons/coffee-svgrepo-com.svg" alt="todo icon"></h2>
         <form>
           <input class="todo-input" type="text" placeholder="Add your Task">
@@ -28,10 +33,10 @@
           <p class="options">Completed</p>
           <button class="remove-btn">Clear All</button>
         </div>
-        <hr>
-        <ul>
-        </ul>
       </Section>
+      <hr>
+      <ul>
+      </ul>
     </main>
   </body>
 </html>
