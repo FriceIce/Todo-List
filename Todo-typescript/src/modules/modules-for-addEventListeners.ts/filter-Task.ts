@@ -35,9 +35,11 @@ function filterTask(target: EventTarget | null, option: HTMLParagraphElement, ta
         if(task.classList.contains('task-done')) return task.style.display = '';
         if(!task.classList.contains('task-done')) return task.style.display = 'none';
       })
+
     } else {
       tasks.forEach(task => task.style.display = '');
     }
+    
   } else {
     option.classList.remove('active-option'); 
   }

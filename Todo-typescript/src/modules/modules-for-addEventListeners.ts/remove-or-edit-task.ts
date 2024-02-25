@@ -39,8 +39,7 @@ export default function removeOrEditTask(el: MouseEvent){
     textContainer.forEach((text, index) =>{
       if(text.textContent !== content[index].content){
         content[index].content = handleLongWord(text.textContent!.trim());
-        // console.log(content[index].content)
-        text.innerHTML = content[index].content; // This removes the unnecessary space after editing content.
+        text.innerHTML = content[index].content; // This removes the unnecessary space/rows after editing content.
         saveToLocalStorage();
       } 
     })

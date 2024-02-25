@@ -1,7 +1,7 @@
 :root{
-  --bar-width: 30px;
+  --bar-width: 35px;
   --bar-height: 5px;
-  --hamburgar-gap: 4px;
+  --hamburgar-gap: 5px;
   --bg-color: rgb(1, 1, 1);
   --margin: 12px; 
   --menu-height: calc(var(--bar-height) * 3 + var(--hamburgar-gap) * 2);
@@ -32,7 +32,7 @@
   transform-origin: left center;
   border-radius: 1000px;
   cursor: pointer;
-  transition: all var(--animation-timing), opacity 100ms;
+  transition: all var(--animation-timing), opacity 350ms;
 }
 
 .hamburgare-menu input{

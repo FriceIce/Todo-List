@@ -1,7 +1,6 @@
 import { content, saveToLocalStorage } from "./save-text-content";
 
 export default function renderHTML(ULcontainer: HTMLUListElement){
-  console.log('PP')
   content.forEach(textContent => {
     ULcontainer.innerHTML += HTML(textContent.content, textContent.id);
   }); 
